@@ -40,22 +40,6 @@ let acumEdadHombres = 0;
 let edadMaxMujeres = Number.NEGATIVE_INFINITY;
 let edadMinHombres = Number.POSITIVE_INFINITY;
 
-/* Array que contiene sexos válidos */
-const sexosValidos = ["F", "M"];
-
-// FUNCION 1 - VALIDA QUE EL SEXO SEA "F" O "M"
-function validarSexo(valor) {
-    let resultado;
-
-    if (!(sexosValidos.includes(valor))) {
-        resultado = true; //DATOS INVÁLIDOS. EL LOOP DEBE REPETIRSE
-        alert("La categoria ingresada es incorrecta. Recordá que los valores válidos son F ó M.");
-    } else {
-        resultado = false; // DATOS VÁLIDOS, EL LOOP PUEDE ROMPERSE Y CONTINUAR...
-    }
-    return resultado;
-}
-
 
 do {
 
@@ -65,9 +49,9 @@ do {
     } while (!isNaN(ciudad) || ciudad.length > 20);
 
     do {
-        sexo = prompt("Sexo femenino o masculino (F ó M)".toUpperCase());
+        sexo = prompt("Sexo Hombre ó Mujer (H o M)").toUpperCase();
 
-    } while (!(sexo === "F" || sexo === "M"));
+    } while (!(sexo === "H" || sexo === "M"));
 
     do {
         edad = parseInt(prompt("Edad:"));
@@ -76,7 +60,7 @@ do {
 
     
     /* Algoritmo para sumar acumuladores de mujeres */
-    if (sexo === "F") {
+    if (sexo === "M") {
         cantMujeres++;
         acumEdadMujeres += edad;
         totalPersonas++;
@@ -113,10 +97,16 @@ do {
     }
 } while (confirm("Deseas cargar otra persona?"));
 
-console.log(`Promedio de de edad general es: ${((acumEdadMujeres + acumEdadHombres) / totalPersonas).toFixed(1)}`);
-console.log(`Promedio de edad de las mujeres es: ${(acumEdadMujeres / cantMujeres).toFixed(1)}`);
-console.log(`Promedio de edad de los hombres es: ${(acumEdadHombres / cantHombres).toFixed(1)}`);
 
-console.log(`La mayor edad ingresada de las mujeres fue: ${edadMaxMujeres}`);
-console.log(`La menor edad ingresada de los hombres fue: ${edadMinHombres}`);
+
+alert(`Promedio de de edad general es: ${((acumEdadMujeres + acumEdadHombres) / totalPersonas).toFixed(1)}`);
+alert(`Promedio de edad de las mujeres es: ${(acumEdadMujeres / cantMujeres).toFixed(1)}`);
+alert(`Promedio de edad de los hombres es: ${(acumEdadHombres / cantHombres).toFixed(1)}`);
+
+
+alert(`Porcentaje de mujeres menores a 21 años es: ${((acumMujMenores21 * 100) / cantMujeres).toFixed(0)} %.`);
+alert(`Porcentaje de hombres mayores a 21 años es: ${((acumHomMayores21 * 100) / cantHombres).toFixed(0)} %.`);
+
+alert(`La mayor edad ingresada de las mujeres fue: ${edadMaxMujeres}`);
+alert(`La menor edad ingresada de los hombres fue: ${edadMinHombres}`);
 
